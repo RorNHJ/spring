@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context = "http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.springframework.org/schema/context
+      http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+
+
+
+    <context:property-placeholder location="classpath:sub_admin.properties"/>
+
+    <!--xml에 자바 파일을 삽입해서 쓰는방법-->
+    <!--<context:annotation-config/>-->
+    <!--<bean class="student.ApplicationConfig"/>-->
+
+    <!--<bean id="student3" class="student.Student">-->
+        <!--<constructor-arg value="홍길순"></constructor-arg>-->
+        <!--<constructor-arg value="30"></constructor-arg>-->
+        <!--<constructor-arg>-->
+            <!--<list>-->
+                <!--<value>마라톤</value>-->
+                <!--<value>베이킹</value>-->
+            <!--</list>-->
+        <!--</constructor-arg>-->
+        <!--<property name="height" value="170"/>-->
+        <!--<property name="weight" value="65"/>-->
+
+    <!--</bean>-->
+
+
+    <!--BMICalculater bmiCalculater = new BMICalculater()-->
+    <!--property들의 name은 각 클래스의 속성 이름과 같아야한다.-->
+    <!--<bean id="bmiCalculater" class="bmiCalculater.BMICalculater">-->
+        <!--<property name="lowWeight">-->
+            <!--<value>18.5</value>-->
+        <!--</property>-->
+        <!--<property name="normal">-->
+            <!--<value>23</value>-->
+        <!--</property>-->
+        <!--<property name="obesity">-->
+            <!--<value>30</value>-->
+        <!--</property>-->
+        <!--<property name="overWeight">-->
+            <!--<value>25</value>-->
+        <!--</property>-->
+    <!--</bean>-->
+
+
+
+    <bean id = "adminConnection" class="adminconnection.AdminConnection">
+        <property name="subId">
+            <value>${sub_id}</value>
+        </property>
+        <property name="subPw">
+            <value>${sub_pw}</value>
+        </property>
+    </bean>
+    <!--scope는 싱글톤이 디폴트값..-->
+    <bean id = "student3" class = "student.Student" scope="singleton">
+        <constructor-arg>
+            <value>식물나라</value>
+        </constructor-arg>
+        <constructor-arg>
+            <value>10</value>
+        </constructor-arg>
+        <constructor-arg>
+            <list>
+                <value>메이크업</value>
+                <value>청소</value>
+                <value>요리</value>
+            </list>
+        </constructor-arg>
+        <property name="height" value="180"/>
+        <property name="weight" value="80"/>
+    </bean>
+
+    <bean id="bmiCalculater2" class="bmiCalculater.BMICalculater">
+        <!--만약 매개변수를 받는 생성자가 있다면 아래 태그를 사용하여 순서대로 초기화..-->
+        <constructor-arg>
+            <value>18.5 </value>
+        </constructor-arg>
+        <constructor-arg>
+            <value>23 </value>
+        </constructor-arg>
+        <constructor-arg>
+            <value>25 </value>
+        </constructor-arg>
+        <property name="obesity" value="30"/>
+
+    </bean>
+
+    <bean id="bmiCalculater3" class="bmiCalculater.BMICalculater" c:lowWeight="11" c:normal = "12" c:overWeight="13.5">
+        <property name="obesity" value="14"/>
+    </bean>
+    <bean id="myinfo2" class="bmiCalculater.MyInfo">
+        <!--만약 매개변수를 받는 생성자가 있다면 아래 태그를 사용하여 순서대로 초기화..-->
+        <constructor-arg value="김태환"/>
+        <constructor-arg value="174"/>
+        <constructor-arg value="75"/>
+        <constructor-arg>
+            <list>
+                <value>독서</value>
+                <value>시사</value>
+                <value>자전거</value>
+            </list>
+        </constructor-arg>
+        <constructor-arg><ref bean="bmiCalculater2"/> </constructor-arg>
+    </bean>
+
+
+    <!--<bean id="myinfo" class="bmiCalculater.MyInfo">-->
+
+        <!--<property name="name" value="라현지"/>-->
+        <!--<property name="height" value="154.5"/>-->
+        <!--<property name="weight" value="54"/>-->
+        <!--<property name="hobby">-->
+            <!--<list>-->
+                <!--<value>수영</value>-->
+                <!--<value>요리</value>-->
+                <!--<value>독서</value>-->
+            <!--</list>-->
+        <!--</property>-->
+        <!--&lt;!&ndash;MyInfo에 BMICalculater를 주입(DI)&ndash;&gt;-->
+        <!--&lt;!&ndash;ref는 위에서 설정한 BMICalculater에 대한 bean의 id 값과 동일해야함&ndash;&gt;-->
+        <!--<property name="bmiCalculater" ref="bmiCalculater"/>-->
+    <!--</bean>-->
+
+
+
+
+
+</beans>
