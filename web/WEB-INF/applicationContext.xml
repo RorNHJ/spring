@@ -3,14 +3,45 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:c="http://www.springframework.org/schema/c"
        xmlns:p="http://www.springframework.org/schema/p"
-       xmlns:context = "http://www.springframework.org/schema/context"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
                         http://www.springframework.org/schema/context
-      http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+      http://www.springframework.org/schema/context/spring-context-3.2.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
 
+    <bean id ="logAop" class="aop.LogAop"/>
+    <aop:config>
+        <aop:aspect id="logger" ref = "logAop">
+            <aop:pointcut id="publicM" expression="within(aop.*)"/>
+            <aop:around method="loggerAop" pointcut-ref="publicM"/>
+        </aop:aspect>
+    </aop:config>
 
-    <context:property-placeholder location="classpath:sub_admin.properties"/>
+    <bean id="worker" class="aop.Worker">
+        <property name="name" value="홍길순"/>
+        <property name="age" value="35"/>
+        <property name="job" value="개발자"/>
+
+    </bean>
+    <bean id = "student" class = "aop.Student" scope="singleton">
+        <constructor-arg>
+            <value>식물나라</value>
+        </constructor-arg>
+        <constructor-arg>
+            <value>10</value>
+        </constructor-arg>
+        <constructor-arg>
+            <list>
+                <value>메이크업</value>
+                <value>청소</value>
+                <value>요리</value>
+            </list>
+        </constructor-arg>
+        <property name="height" value="180"/>
+        <property name="weight" value="80"/>
+    </bean>
+    <!--<context:property-placeholder location="classpath:sub_admin.properties"/>-->
 
     <!--xml에 자바 파일을 삽입해서 쓰는방법-->
     <!--<context:annotation-config/>-->
@@ -76,6 +107,7 @@
         <property name="height" value="180"/>
         <property name="weight" value="80"/>
     </bean>
+
 
     <bean id="bmiCalculater2" class="bmiCalculater.BMICalculater">
         <!--만약 매개변수를 받는 생성자가 있다면 아래 태그를 사용하여 순서대로 초기화..-->

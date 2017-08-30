@@ -72,6 +72,13 @@ public class Student implements InitializingBean,DisposableBean {
         System.out.println("DisposableBean을 임플리먼트하고 스프링 컨테이너 생명주기 중 소멸 단계에서 스프링의 빈 생명주기의 afterPropertiesSet()이 호출됨..");
 
     }
+    public  void getStudentInfo(){
+        System.out.println("이름: " + name);
+        System.out.println("나이: " + age);
+        System.out.println("취미: " + getHobbys());
+        System.out.println("신장: " + getHeight());
+        System.out.println("몸무게: " + getWeight());
+    }
 
 //    @PostConstruct // 굳이 InitializingBean을 임플리먼트 안해도 어노테이션으로 간단하게 처리 가능
 //    public void initMethod(){
