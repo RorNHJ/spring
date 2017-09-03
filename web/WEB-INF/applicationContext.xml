@@ -10,13 +10,17 @@
       http://www.springframework.org/schema/context/spring-context-3.2.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
 
-    <bean id ="logAop" class="aop.LogAop"/>
-    <aop:config>
-        <aop:aspect id="logger" ref = "logAop">
-            <aop:pointcut id="publicM" expression="within(aop.*)"/>
-            <aop:around method="loggerAop" pointcut-ref="publicM"/>
-        </aop:aspect>
-    </aop:config>
+    <!--xml으로 aop 구현할땔 밑에 소스, 어노테이션 사용시에는 위에 소스-->
+    <!--<aop:config>-->
+    <!--<aop:aspect id="logger" ref = "logAop">-->
+    <!--<aop:pointcut id="publicM" expression="within(aop.*)"/>-->
+    <!--<aop:around method="loggerAop" pointcut-ref="publicM"/>-->
+    <!--</aop:aspect>-->
+    <!--</aop:config>-->
+    <aop:aspectj-autoproxy/>
+    <bean id ="LogAop" class="aop.LogAopAnotation"/>
+
+
 
     <bean id="worker" class="aop.Worker">
         <property name="name" value="홍길순"/>

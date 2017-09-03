@@ -1,0 +1,53 @@
+#loginBox{
+    border-radius: 2px;
+    background-color: #FF9A00;
+    padding-top: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 200px;
+    height: 80px;
+    box-shadow: 3px 3px 10px #888888;
+}
+.indexInput input{
+    background-color: white;
+    border: none;
+    height: 25px;
+    width: 180px;
+
+}
+
+button{
+    background-color:white ;
+    border: 1px solid #FF9A00;
+
+}
+.noticeTable table {
+
+    margin:15px 0;
+    border:0;
+}
+.noticeTable th {
+    background-color: #ffd67c;
+    color:#000000
+}
+.noticeTable,.noticeTable th,.noticeTable td {
+    font-size:0.95em;
+    text-align:center;
+    padding:4px;
+    border-collapse:collapse;
+}
+.noticeTable td {
+    border: 1px solid #E4E4E4;
+    border-width:1px 0 1px 0
+}
+
+.noticeTable tr:nth-child(odd){
+    background-color:white;
+}
+.noticeTable tr:nth-child(even){
+    background-color:#fdfdfd;
+}
+a{
+    color: #363636;
+    text-decoration:none;
+}
